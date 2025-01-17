@@ -1,0 +1,46 @@
+{
+  "name": "browser_extension_template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "deploy-v3": "npx rimraf ./dist/ && npm run build-tooling && npm run sync && npm run build && node ./tools/parse.js",
+    "deploy-v2": "npm run deploy-v3 && node ./tools/v2.js",
+    "build": "vite build",
+    "build-tooling": "tsc --project ./tooling.tsconfig.json",
+    "watch": "vite build --watch",
+    "sync": "npm run build-tooling && node ./tools/syncConfig.js"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/node": "^20.13.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
+    "sass": "^1.77.4",
+    "vite": "^5.2.12",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "authors": [
+    {
+      "name": "Jonas Pfalzgraf",
+      "email": "info@josunlp.de"
+    }
+  ],
+  "description": "A basic template based on SASS and TypeScript to create browser extensions without directly relying on a larger framework.",
+  "homepage": "https://github.com/JosunLP/BrowserExtensionTemplate",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:JosunLP/BrowserExtensionTemplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JosunLP/BrowserExtensionTemplate/issues"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "^1.6.0",
+    "bootstrap": "^5.3.3"
+  }
+}
