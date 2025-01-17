@@ -2,21 +2,24 @@
   "name": "browser_extension_template",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
-    "deploy-v3": "npx rimraf ./dist/ && npm run build-tooling && npm run sync && npm run build && node ./tools/parse.js",
+    "deploy-v3": "npx rimraf ./dist/ && npm run sync && npm run build && ts-node ./tools/parse.ts",
     "deploy-v2": "npm run deploy-v3 && node ./tools/v2.js",
     "build": "vite build",
-    "build-tooling": "tsc --project ./tooling.tsconfig.json",
     "watch": "vite build --watch",
-    "sync": "npm run build-tooling && node ./tools/syncConfig.js"
+    "sync": "ts-node ./tools/syncConfig.ts"
   },
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@types/chrome": "^0.0.268",
     "@types/node": "^20.13.0",
-    "@webcomponents/webcomponentsjs": "^2.8.0",
     "sass": "^1.77.4",
-    "vite": "^5.2.12",
-    "vite-tsconfig-paths": "^4.3.2"
+    "svelte": "^5.18.0",
+    "svelte-preprocess": "^6.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "browserslist": [
     "> 1%",
@@ -38,9 +41,5 @@
   },
   "bugs": {
     "url": "https://github.com/JosunLP/BrowserExtensionTemplate/issues"
-  },
-  "dependencies": {
-    "@webcomponents/custom-elements": "^1.6.0",
-    "bootstrap": "^5.3.3"
   }
 }

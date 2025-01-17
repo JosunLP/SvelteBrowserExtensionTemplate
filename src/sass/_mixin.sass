@@ -1,14 +1,12 @@
-@import "root"
+@use "root" as *
 
 @mixin respond-to($media)
   @if $media == handhelds
     @media only screen and (max-device-width: 40rem)
       @content
-
   @else if $media == medium-screens
     @media only screen and (min-device-width: 40rem)
       @content
-
   @else if $media == wide-screens
     @media only screen and (min-width: 1000px)
       @content
@@ -24,8 +22,8 @@
   @include respond-to(handhelds)
     font-size: 3rem
 
-    @include respond-to(medium-screens)
-      font-size: 1.5rem
+  @include respond-to(medium-screens)
+    font-size: 1.5rem
 
 @mixin hoverMe
   &:hover
